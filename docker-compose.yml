@@ -1,0 +1,16 @@
+version: "2"
+services:
+  nameko:
+    build: ./nameko
+    restart: always
+    volumes:
+      - .:/nameko/code
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    image: "rabbitmq:management"
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
